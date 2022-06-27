@@ -20,3 +20,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to map the core user journey from start to finish in plain steps and make the whole thing feel less half baked. The middle part always takes longer than it should, mostly becuase one fix usually reveals two more things to clean up. A good chunk of the day went into making the flow feel believable from a user point of view.
 - Deliverable: I wrapped up the day with user flow mostly in place. It was not perfect, but it was good enough to keep the project moving. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2022-06-27 - Day 4: User flow
+
+- Task summary: Circled back: wrapped a repeated block in a helper function since it showed up three times.
+- Deliverable: Small fix, clean result.
