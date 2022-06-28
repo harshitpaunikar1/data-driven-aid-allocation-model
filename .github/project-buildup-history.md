@@ -24,3 +24,7 @@
 
 - Task summary: Circled back: wrapped a repeated block in a helper function since it showed up three times.
 - Deliverable: Small fix, clean result.
+## 2022-06-28 - Day 5: Content outline
+
+- Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to list the sections, messages, and data that need to appear in the project and make the whole thing feel less half baked. By now I had enough structure to keep going without staring at the screen too long, wich honestly helped a lot. This kind of work is mostly small decisions stacked together, even if it does not look dramatic from outside.
+- Deliverable: I wrapped up the day with content outline mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
