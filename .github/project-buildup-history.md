@@ -56,3 +56,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to write a README that explains the problem, solution, and how to review the project so the final result looked a bit more complete. Toward the end I mostly kept trimming weird bits, fixing wording, and tying the loose parts together. This kind of work is mostly small decisions stacked together, even if it does not look dramatic from outside.
 - Deliverable: Ended the day with project README in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2022-07-06 - Day 11: README check
+
+- Task summary: Got stuck mid-afternoon and had to regroup — found a duplicate function that slipped in during copy-paste. Removed it.
+- Deliverable: Nothing dramatic — just keeping things tidy.
