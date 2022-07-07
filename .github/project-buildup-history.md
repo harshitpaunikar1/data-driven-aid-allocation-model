@@ -60,3 +60,7 @@
 
 - Task summary: Got stuck mid-afternoon and had to regroup — found a duplicate function that slipped in during copy-paste. Removed it.
 - Deliverable: Nothing dramatic — just keeping things tidy.
+## 2022-07-07 - Day 12: Polish wrap
+
+- Task summary: Used the last day on Data-Driven Aid Allocation Model to slow down and finish the loose ends. I mainly had to do a final pass for clarity, consistency, and first-impression quality and make sure the project told a clean story from start to finish. I was not trying to add anything fancy here, just making sure the thing looked complete enough to show someone. I was also trying to keep the idea grounded so it did not drift into random features for no reason.
+- Deliverable: Finished with final polish looking decent enough to call this version done, even if I could still nitpick a few things. It was not super polished, just stable enough that I felt okay moving forward.
