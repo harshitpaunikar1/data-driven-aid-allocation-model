@@ -12,3 +12,7 @@
 
 - Task summary: Built the core optimization model for the Aid Allocation case study. Used a linear programming formulation with the scipy solver. The model takes budget as input and outputs the recommended allocation across six intervention categories and four geographic zones. Ran it at three budget levels to show how the allocation strategy changes — at low budget it concentrates, at high budget it spreads more evenly due to diminishing returns constraints.
 - Deliverable: LP model complete. Allocation shown at three budget levels. Diminishing returns captured.
+## 2024-09-09 - Day 3: Optimization model
+
+- Task summary: The solver was returning slightly negative values for some allocation variables due to floating point issues — added a clamp to zero to handle this cleanly.
+- Deliverable: Floating point clamp added to allocation outputs.
