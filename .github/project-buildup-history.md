@@ -8,3 +8,7 @@
 
 - Task summary: Started the Data-Driven Aid Allocation Model case study properly today. The problem involves allocating emergency aid to geographies affected by a crisis, where the goal is to maximize people-hours of relief per dollar spent while respecting logistical constraints. Spent today formalizing the objective function and constraints based on real NGO allocation frameworks. Also gathered historical data on aid delivery efficiency by region and intervention type to use as impact estimates.
 - Deliverable: Problem formalized. Objective function written. Historical efficiency data gathered.
+## 2024-09-09 - Day 3: Optimization model
+
+- Task summary: Built the core optimization model for the Aid Allocation case study. Used a linear programming formulation with the scipy solver. The model takes budget as input and outputs the recommended allocation across six intervention categories and four geographic zones. Ran it at three budget levels to show how the allocation strategy changes — at low budget it concentrates, at high budget it spreads more evenly due to diminishing returns constraints.
+- Deliverable: LP model complete. Allocation shown at three budget levels. Diminishing returns captured.
