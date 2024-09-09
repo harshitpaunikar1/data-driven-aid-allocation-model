@@ -16,3 +16,7 @@
 
 - Task summary: The solver was returning slightly negative values for some allocation variables due to floating point issues — added a clamp to zero to handle this cleanly.
 - Deliverable: Floating point clamp added to allocation outputs.
+## 2024-09-09 - Day 3: Optimization model
+
+- Task summary: Added a constraint validation step that checks if the input data is feasible before calling the solver, to avoid cryptic solver errors when inputs are bad.
+- Deliverable: Input feasibility check added before solver call.
