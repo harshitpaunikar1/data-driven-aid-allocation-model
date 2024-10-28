@@ -20,3 +20,7 @@
 
 - Task summary: Added a constraint validation step that checks if the input data is feasible before calling the solver, to avoid cryptic solver errors when inputs are bad.
 - Deliverable: Input feasibility check added before solver call.
+## 2024-10-28 - Day 4: Presentation layer
+
+- Task summary: Built the presentation layer for the Aid Allocation case study today. The optimization model output is not self-explanatory to a non-technical audience, so wrote a detailed narrative explaining the recommended allocation, why the model chose each zone and intervention category, and how confident the recommendation is given the uncertainty in impact estimates. Also created a one-page summary intended for a decision-maker briefing.
+- Deliverable: Narrative explanation and one-page briefing summary written.
