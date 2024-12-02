@@ -24,3 +24,7 @@
 
 - Task summary: Built the presentation layer for the Aid Allocation case study today. The optimization model output is not self-explanatory to a non-technical audience, so wrote a detailed narrative explaining the recommended allocation, why the model chose each zone and intervention category, and how confident the recommendation is given the uncertainty in impact estimates. Also created a one-page summary intended for a decision-maker briefing.
 - Deliverable: Narrative explanation and one-page briefing summary written.
+## 2024-12-02 - Day 5: Repository cleanup
+
+- Task summary: Did a thorough repository cleanup for the Data-Driven Aid Allocation Model. Removed intermediate scratch notebooks, organized the data directory, made sure the requirements file was complete and accurate, and wrote setup instructions that I verified worked from scratch. Also added a brief note on the model's limitations — particularly that the impact estimates come from historical data and may not generalize to novel crisis types.
+- Deliverable: Repository cleaned. Setup instructions verified. Limitations section added.
