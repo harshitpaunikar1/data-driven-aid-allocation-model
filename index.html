@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directive: Resource Allocation Under Scarcity Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* 
+      DESIGN SYSTEM: "Bureaucratic Directive"
+      Black and white only. Typography-driven.
+      Tight margins, structured lists, numerical section markers, policy-rule h2s.
+    */
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #4a4a4a;
+      --border-heavy: #000000;
+      --border-light: #cccccc;
+      --f-prose: 'Public Sans', sans-serif;
+      --f-mono: 'Roboto Mono', monospace;
+      --code-bg: #111111;
+      --code-text: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--f-prose);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 5rem;
+    }
+
+    .directive-shell {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 4rem; /* Tight, formal margins like a PDF */
+      border-left: 2px solid var(--border-heavy);
+      border-right: 2px solid var(--border-heavy);
+      min-height: 100vh;
+      background: var(--bg);
+    }
+
+    /* Directive Header */
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 4px solid var(--border-heavy);
+      padding-bottom: 2rem;
+    }
+
+    .header-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .header-table td {
+      border: 1px solid var(--border-heavy);
+      padding: 0.5rem 1rem;
+    }
+
+    .header-table td:nth-child(odd) {
+      font-weight: 700;
+      width: 20%;
+      background-color: var(--text);
+      color: var(--bg);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+
+    /* Policy Rule Headings */
+    h2 {
+      font-family: var(--f-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      background-color: var(--text);
+      color: var(--bg);
+      padding: 0.5rem 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    h3 {
+      font-family: var(--f-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border-heavy);
+      padding-bottom: 0.25rem;
+    }
+
+    /* Typography */
+    p {
+      margin-bottom: 1.25rem;
+      text-align: justify;
+    }
+
+    .section-marker {
+      font-family: var(--f-mono);
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    /* Structured Lists */
+    ol.policy-list {
+      counter-reset: policy-counter;
+      list-style-type: none;
+      margin-bottom: 2rem;
+    }
+
+    ol.policy-list > li {
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    ol.policy-list > li::before {
+      counter-increment: policy-counter;
+      content: "SEC." counter(policy-counter);
+      position: absolute;
+      left: 0;
+      font-family: var(--f-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      top: 0.25rem;
+    }
+
+    /* Code Block */
+    pre {
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-left: 6px solid #555;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: var(--f-mono);
+    }
+
+    .c-comment { color: #888; }
+    .c-key { color: #fff; font-weight: 700; }
+
+    /* SVG Figures */
+    .fig-container {
+      margin: 3rem 0;
+      border: 1px solid var(--border-heavy);
+      padding: 2rem 2rem 1rem 2rem;
+      background-color: var(--bg);
+    }
+
+    .fig-header {
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px dashed var(--border-light);
+      padding-bottom: 0.5rem;
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .caption {
+      font-family: var(--f-prose);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      padding: 0.75rem;
+      background-color: #f8f8f8;
+      border: 1px solid var(--border-light);
+    }
+
+    @media (max-width: 768px) {
+      .directive-shell {
+        padding: 2rem 1rem;
+        border: none;
+      }
+      .header-table td {
+        display: block;
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="directive-shell">
+  
+  <header>
+    <table class="header-table">
+      <tr>
+        <td>SUBJECT</td>
+        <td>Quantitative Triage and Resource Allocation Framework</td>
+      </tr>
+      <tr>
+        <td>AUTHORITY</td>
+        <td>Office of Program Analytics</td>
+      </tr>
+      <tr>
+        <td>STATUS</td>
+        <td>Enacted / Active Deployment</td>
+      </tr>
+    </table>
+    <h1>Directive: Resource Allocation Under Strict Scarcity Limits</h1>
+    <p class="lede">Algorithms deployed in NGO resource allocation environments are fundamentally distinct from commercial recommendation engines. The engine does not solve a shortfall; it is mathematically constructed to distribute the shortfall. This directive outlines the mechanical triage utilized to determine which high-need regions are excluded from distribution when budgetary capital fails to match documented necessity.</p>
+  </header>
+
+  <p>The operating environment is defined by an absolute budgetary ceiling. In the current fiscal quarter, verified regional demand exceeds our disbursement capacity by a factor of 4.2x. When supply is violently outmatched by demand, relying on political sentiment, legacy distribution channels, or subjective "squeaky-wheel" narratives to assign capital is an ethical failure. Triage must be mechanical. The model detailed below does not invent resources. It exists strictly to minimize aggregate harm under absolute constraints, enforcing a hierarchy of deprivation.</p>
+
+  <h2><span class="section-marker">1.0</span> The Mathematics of the Scarcity Gap</h2>
+
+  <p>Before examining the clustering logic, we must codify the baseline scenario. The model requires an explicit acknowledgement of the supply-demand threshold. If a given operational zone requires $8.5M in aid to stabilize, but the global distribution limit is capped at $2.0M, the model's mandate is not to distribute the $2.0M evenly and fail everyone equally. Its mandate is to structurally rank the subsections of that zone and deliberately cut off the bottom quartile to ensure the capital reaches a saturation point where its deployment actually functions.</p>
+
+  <div class="fig-container">
+    <div class="fig-header">FIGURE 1A: Supply-Demand Threshold and The Exclusion Zone</div>
+    <svg viewBox="0 0 800 350" preserveAspectRatio="xMidYMid meet">
+      <!-- Grid Lines -->
+      <line x1="100" y1="280" x2="750" y2="280" stroke="#111" stroke-width="2" />
+      <line x1="100" y1="50" x2="100" y2="280" stroke="#111" stroke-width="2" />
+      
+      <line x1="100" y1="120" x2="750" y2="120" stroke="#111" stroke-width="2" stroke-dasharray="8 4" />
+      
+      <!-- Axis Labels -->
+      <text x="80" y="285" font-family="'Roboto Mono'" font-size="12" text-anchor="end">0</text>
+      <text x="80" y="125" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="end">$2.0M</text>
+      <text x="80" y="60" font-family="'Roboto Mono'" font-size="12" text-anchor="end">$8.5M</text>
+      
+      <text x="30" y="165" font-family="'Roboto Mono'" font-size="12" transform="rotate(-90 30 165)" text-anchor="middle">CAPITAL COMMITMENT</text>
+      
+      <text x="425" y="320" font-family="'Roboto Mono'" font-size="14" font-weight="700" text-anchor="middle">PRIORITY SECTORS (1-7)</text>
+
+      <!-- Distribution Bars (Demand) -->
+      <rect x="130" y="80" width="40" height="200" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+      <rect x="210" y="60" width="40" height="220" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+      <rect x="290" y="130" width="40" height="150" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+      <rect x="370" y="100" width="40" height="180" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+      <rect x="450" y="140" width="40" height="140" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+      <rect x="530" y="180" width="40" height="100" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+      <rect x="610" y="190" width="40" height="90" fill="#f5f5f5" stroke="#111" stroke-width="1" />
+
+      <!-- Allocation Overlay (The $2.0M Cap) -->
+      <rect x="130" y="120" width="40" height="160" fill="#111" />
+      <rect x="210" y="120" width="40" height="160" fill="#111" />
+      <!-- Sector 3: Partially funded to empty the budget -->
+      <rect x="290" y="180" width="40" height="100" fill="#111" />
+
+      <!-- The Gap Annotation -->
+      <text x="790" y="110" font-family="'Roboto Mono'" font-size="9" font-weight="700" text-anchor="end">ABSOLUTE</text>
+      <text x="790" y="121" font-family="'Roboto Mono'" font-size="9" font-weight="700" text-anchor="end">INVENTORY CAP</text>
+      
+      <!-- Deficit Highlight -->
+      <path d="M 230 60 L 230 40 L 400 40" stroke="#555" fill="none" stroke-width="1" />
+      <text x="410" y="45" font-family="'Roboto Mono'" font-size="10" fill="#555">UNFUNDED MANDATE</text>
+
+      <text x="150" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.1</text>
+      <text x="230" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.2</text>
+      <text x="310" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.3</text>
+      <text x="390" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.4</text>
+      <text x="470" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.5</text>
+      <text x="550" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.6</text>
+      <text x="630" y="300" font-family="'Roboto Mono'" font-size="10" text-anchor="middle">S.7</text>
+
+    </svg>
+    <div class="caption">
+      Because total systemic need exceeds the supply cap, Sections 4, 5, 6, and 7 receive zero allocation. Spreading the $2.0M cap horizontally across all 7 sectors would dilute the per-capita distribution below the efficacy threshold, resulting in systemic failure across the board rather than localized stabilization.
+    </div>
+  </div>
+
+  <h2><span class="section-marker">2.0</span> Feature Abstraction and Triage Logic</h2>
+
+  <p>To execute the segregation outlined in Figure 1A, the model forces a quantitative ranking. We employ a deterministic clustering pipeline (typically K-Means combined with a weighted scalar index). The dataset ingests socio-economic dimensions including child mortality rates, localized inflation, access to potable water infrastructure, and conflict-displacement density.</p>
+
+  <p>To prevent localized political pressure from shifting resource allocations toward more accessible or louder communities, all geolocation data and demographic identifiers are strictly stripped from the matrix before clustering occurs.</p>
+
+  <ol class="policy-list">
+    <li><strong>Data Standardization:</strong> Socioeconomic indicators exist on wildly different scales (e.g., inflation percentages vs. binary water access tags). Variables are strictly centered and scaled ($Z$-scores) to prevent high-variance domains from dominating the penalty matrix.</li>
+    <li><strong>Weight Application:</strong> The clustering engine does not treat all deprivation equally. The algorithm hardcodes a $1.5x$ penalty multiplier for structural violence vectors, establishing an overriding priority for physical survival over economic stabilization.</li>
+    <li><strong>Deterministic Segregation:</strong> The algorithm breaks the dataset into strictly tiered scarcity buckets. Funding moves from Bucket A downward until the capital is exhausted.</li>
+  </ol>
+
+<pre><code><span class="c-comment"># Calculating the Priority Index for Bucket Assignment</span>
+<span class="c-keyword">import</span> pandas <span class="c-keyword">as</span> pd
+<span class="c-keyword">from</span> sklearn.preprocessing <span class="c-keyword">import</span> StandardScaler
+
+<span class="c-comment"># Strip identifers to blind the model to geographic politics</span>
+features = raw_data.drop(columns=[<span class="c-str">'region_name'</span>, <span class="c-str">'district_id'</span>])
+
+<span class="c-comment"># Force strict scaling</span>
+scaler = StandardScaler()
+scaled_matrix = scaler.fit_transform(features)
+processed_df = pd.DataFrame(scaled_matrix, columns=features.columns)
+
+<span class="c-comment"># Construct the deprivation score (higher = sharper triage priority)</span>
+<span class="c-comment"># Notice the aggressive weighting on mortality and structural violence </span>
+processed_df[<span class="c-str">'priority_index'</span>] = (
+    processed_df[<span class="c-str">'infant_mortality'</span>] * 1.5 + 
+    processed_df[<span class="c-str">'water_scarcity_index'</span>] * 1.0 + 
+    processed_df[<span class="c-str">'conflict_density'</span>] * 1.5 +
+    processed_df[<span class="c-str">'food_inflation'</span>] * 0.8
+)
+
+<span class="c-comment"># Rank output dictating the exhaustion of the funding cap</span>
+funding_queue = processed_df.sort_values(by=<span class="c-str">'priority_index'</span>, ascending=False)
+</code></pre>
+
+  <h2><span class="section-marker">3.0</span> Baseline Corruption vs Optimized Pipeline</h2>
+
+  <p>The resistance to algorithmic assignment in humanitarian aid usually stems from the discomfort of defining exactly who does not receive assistance. However, human-led "baseline" distribution is wildly corruptible by accessibility biases. Regions nearest to logistical hubs or those represented by highly literate advocates systematically extract higher resource ratios than remote, silent sectors suffering deeper physical peril.</p>
+
+  <p>The logic pipeline exists strictly to overwrite human bias with mathematical hostility toward inequitable distribution.</p>
+
+  <div class="fig-container">
+    <div class="fig-header">FIGURE 2B: Architectural Logic Flow</div>
+    <svg viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet">
+      
+      <!-- Input Block -->
+      <rect x="50" y="40" width="140" height="280" fill="#f8f8f8" stroke="#111" stroke-width="2" />
+      <text x="120" y="70" font-family="'Roboto Mono'" font-size="12" font-weight="700" text-anchor="middle">CENSUS / SIGNALS</text>
+      
+      <rect x="60" y="90" width="120" height="40" fill="#fff" stroke="#555" />
+      <text x="120" y="115" font-family="'Public Sans'" font-size="10" fill="#111" text-anchor="middle">Mortality Rates</text>
+
+      <rect x="60" y="140" width="120" height="40" fill="#fff" stroke="#555" />
+      <text x="120" y="165" font-family="'Public Sans'" font-size="10" fill="#111" text-anchor="middle">Water Access %</text>
+
+      <rect x="60" y="190" width="120" height="40" fill="#fff" stroke="#555" />
+      <text x="120" y="215" font-family="'Public Sans'" font-size="10" fill="#111" text-anchor="middle">Conflict Events</text>
+
+      <rect x="60" y="240" width="120" height="40" fill="#fff" stroke="#ccc" />
+      <text x="120" y="265" font-family="'Public Sans'" font-size="10" fill="#888" text-anchor="middle" text-decoration="line-through">Region Identifiers</text>
+
+      <!-- Connection -->
+      <path d="M 190 160 L 260 160" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+
+      <!-- The Filter Subsystem -->
+      <rect x="290" y="100" width="160" height="120" fill="#111" stroke="#111" />
+      <text x="370" y="130" font-family="'Roboto Mono'" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">SCALAR ENGINE</text>
+      <text x="370" y="160" font-family="'Roboto Mono'" font-size="10" fill="#aaa" text-anchor="middle">1. Z-Score Scaling</text>
+      <text x="370" y="180" font-family="'Roboto Mono'" font-size="10" fill="#aaa" text-anchor="middle">2. Target Weighting</text>
+      <text x="370" y="200" font-family="'Roboto Mono'" font-size="10" fill="#aaa" text-anchor="middle">3. Sort(Desc)</text>
+
+      <!-- Connections Split Baseline vs Optimized -->
+      <path d="M 450 160 L 510 160" stroke="#111" stroke-width="2" fill="none" marker-end="url(#arrowhead)" />
+      
+      <!-- Baseline Distribution Box (Top rightish, ghosted) -->
+      <path d="M 120 40 L 120 20 L 630 20 L 630 65" stroke="#ccc" stroke-dasharray="4 4" fill="none" marker-end="url(#ghostarrow)" />
+      
+      <rect x="540" y="60" width="200" height="80" fill="#fafafa" stroke="#ccc" stroke-dasharray="2 2" />
+      <text x="640" y="80" font-family="'Roboto Mono'" font-size="10" font-weight="700" fill="#555" text-anchor="middle">BASELINE DISTRIBUTION</text>
+      <text x="640" y="105" font-family="'Public Sans'" font-size="9" fill="#888" text-anchor="middle">Diluted.</text>
+      <text x="640" y="120" font-family="'Public Sans'" font-size="9" fill="#888" text-anchor="middle">Susceptible to visibility bias.</text>
+
+      <!-- Optimized Box (Bottom right, heavy) -->
+      <rect x="540" y="160" width="200" height="120" fill="#fff" stroke="#111" stroke-width="3" />
+      <rect x="540" y="160" width="200" height="30" fill="#111" />
+      <text x="640" y="180" font-family="'Roboto Mono'" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">OPTIMIZED TIERING</text>
+      
+      <text x="560" y="215" font-family="'Roboto Mono'" font-size="10" font-weight="700" fill="#111">TIER 1:</text>
+      <text x="620" y="215" font-family="'Public Sans'" font-size="10" fill="#111">Funded (100% saturation)</text>
+      
+      <text x="560" y="240" font-family="'Roboto Mono'" font-size="10" font-weight="700" fill="#111">TIER 2:</text>
+      <text x="620" y="240" font-family="'Public Sans'" font-size="10" fill="#111">Funded to budget cap</text>
+
+      <text x="560" y="265" font-family="'Roboto Mono'" font-size="10" font-weight="700" fill="#888">TIER 3:</text>
+      <text x="620" y="265" font-family="'Public Sans'" font-size="10" fill="#888">Zero allocation</text>
+      
+
+      <defs>
+        <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#111" />
+        </marker>
+        <marker id="ghostarrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#ccc" />
+        </marker>
+      </defs>
+    </svg>
+    <div class="caption">
+      Notice that the optimized tiering completely bypasses the legacy Baseline Distribution loop shown via the dotted path. Raw datasets pass directly into the scaling engine, ensuring that geographic identifiers are purged and prioritization is mapped exclusively to documented deprivation.
+    </div>
+  </div>
+
+  <h2><span class="section-marker">4.0</span> Ethical Friction and Output Defense</h2>
+
+  <p>Defending the outputs of this model is intentionally uncomfortable. It forces program managers to stand in front of Tier 3 communities—communities that are demonstrably suffering and entirely deserving of aid—and confirm that they will receive zero capital in the current cycle because a mathematical matrix ranked them marginally lower than a neighboring district.</p>
+
+  <p>The model does not alleviate the ethical friction of scarcity; it merely strips away the bureaucratic cover that previously allowed administrators to distribute funds inefficiently without accountability. By surfacing the exact threshold where the capital dies, the algorithm forces the organization to confront the brutal reality of its own limitations. Triage is a violent act. The purpose of deploying this algorithmic framework is to guarantee that the violence is inflicted systematically, fairly, and without favor.</p>
+
+</div>
+
+</body>
+</html>
